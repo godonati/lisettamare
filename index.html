@@ -24,7 +24,7 @@
                     colors: {
                         cream: '#F9F7F2', // Warm White background
                         charcoal: '#333333', // Body text
-                        navy: '#1B2631', // Primary Accent (Deep Sea)
+                        navy: '#5D8AA8', // Primary Accent (AirForce Blue) - Changed from #1B2631
                         rattan: '#C4A484', // Secondary Accent (Wood)
                         sage: '#7C8675', // Subtle Accent (Nature)
                     },
@@ -74,6 +74,54 @@
             display: none;
             -webkit-appearance: none;
         }
+
+        /* Animated Underline Effect (White for Footer/Contact) */
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
+        }
+
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #ffffff; /* White */
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Animated Underline Effect (Rattan for Header) */
+        .hover-underline-animation-rattan {
+            display: inline-block;
+            position: relative;
+        }
+
+        .hover-underline-animation-rattan::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #C4A484; /* Rattan Color */
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        .hover-underline-animation-rattan:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
     </style>
 </head>
 <body class="font-sans antialiased overflow-x-hidden flex flex-col min-h-screen">
@@ -92,12 +140,14 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
-                    <a href="#home" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase">Home</a>
-                    <a href="#stays" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase">Stays</a>
-                    <a href="#about" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase">House</a>
-                    <a href="#location" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase">Location</a>
-                    <a href="#contact" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase">Contact</a>
-                    <a href="#inquiry" class="bg-navy text-white px-8 py-3 rounded-full text-sm tracking-widest hover:bg-charcoal transition duration-300 shadow-lg">
+                    <!-- Added hover:scale-105 to all menu links below -->
+                    <a href="#home" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">Home</a>
+                    <a href="#stays" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">Stays</a>
+                    <a href="#about" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">House</a>
+                    <a href="#location" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">Location</a>
+                    <a href="#contact-details" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">Contact</a>
+                    <!-- Updated Button: Changed hover:bg-charcoal to hover:bg-rattan -->
+                    <a href="#inquiry" class="bg-navy text-white px-8 py-3 rounded-full text-sm tracking-widest hover:bg-rattan transition duration-300 shadow-lg">
                         Inquire
                     </a>
                 </div>
@@ -118,8 +168,9 @@
                 <a href="#stays" class="text-charcoal hover:text-rattan text-lg font-serif italic" onclick="toggleMenu()">Stays</a>
                 <a href="#about" class="text-charcoal hover:text-rattan text-lg font-serif italic" onclick="toggleMenu()">House</a>
                 <a href="#location" class="text-charcoal hover:text-rattan text-lg font-serif italic" onclick="toggleMenu()">Location</a>
-                <a href="#contact" class="text-charcoal hover:text-rattan text-lg font-serif italic" onclick="toggleMenu()">Contact</a>
-                <a href="#inquiry" class="bg-navy text-white px-8 py-3 rounded-full w-full text-center mt-4" onclick="toggleMenu()">Inquire</a>
+                <a href="#contact-details" class="text-charcoal hover:text-rattan text-lg font-serif italic" onclick="toggleMenu()">Contact</a>
+                <!-- Updated Mobile Button for consistency -->
+                <a href="#inquiry" class="bg-navy text-white px-8 py-3 rounded-full w-full text-center mt-4 hover:bg-rattan transition duration-300" onclick="toggleMenu()">Inquire</a>
             </div>
         </div>
     </nav>
@@ -145,7 +196,7 @@
                 Your Sanctuary <br/><span class="italic font-light">by the Sea</span>
             </h1>
             <p class="text-cream/90 text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto drop-shadow-md">
-                Short, medium, and long-term stays curated for the soul in a luxury rustic setting.
+                Short, medium, and long-term stays curated for the soul.
             </p>
         </div>
     </section>
@@ -153,7 +204,7 @@
     <!-- Booking Bar (Overlapping) -->
     <div class="relative z-30 -mt-20 md:-mt-16 px-4">
         <div class="max-w-6xl mx-auto bg-white p-6 md:p-8 rounded-xl shadow-2xl border border-navy/5">
-            <form action="#inquiry" class="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
+            <form action="#inquiry" class="grid grid-cols-1 md:grid-cols-4 gap-6 items-start">
                 <!-- Check In -->
                 <div>
                     <label class="block text-xs font-bold text-rattan uppercase tracking-widest mb-2">Check-in</label>
@@ -175,6 +226,7 @@
                     <label class="block text-xs font-bold text-rattan uppercase tracking-widest mb-2">Guests</label>
                     <div class="flex items-center border-b border-gray-200 py-2 relative">
                         <select id="booking-guests" class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none focus:bg-navy/5 focus:ring-1 focus:ring-navy rounded transition-colors font-sans cursor-pointer">
+                            <option value="" disabled selected># of Guests</option>
                             <option value="1 Guest">1 Guest</option>
                             <option value="2 Guests">2 Guests</option>
                             <option value="3 Guests">3 Guests</option>
@@ -184,10 +236,13 @@
                     </div>
                 </div>
                 <!-- Button -->
-                <div>
+                <div class="flex flex-col justify-end h-full">
+                    <label class="block text-xs font-bold text-transparent uppercase tracking-widest mb-2 hidden md:block">Action</label>
                     <a href="#inquiry" id="check-availability-btn" class="w-full block text-center bg-navy text-white font-bold py-4 px-6 rounded-lg hover:bg-rattan transition duration-300 uppercase tracking-wider text-sm cursor-pointer">
                         Check Availability
                     </a>
+                    <!-- Error Message Container -->
+                    <div id="booking-error" class="text-red-500 text-xs mt-2 text-center font-bold hidden leading-tight"></div>
                 </div>
             </form>
         </div>
@@ -216,10 +271,10 @@
                             <h3 class="font-serif text-xl text-navy">Weekend Escape</h3>
                             <span class="text-xs font-bold text-rattan uppercase">Short Term</span>
                         </div>
-                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">Perfect for a quick reset. Enjoy sunrise breakfasts and sunset wines.</p>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">Perfect for a quick reset. Enjoy the beautiful sunrises of Cetraro and sunsets at the beach.</p>
                         <div class="border-t border-gray-100 pt-4 flex justify-between items-center">
-                            <span class="text-xs text-gray-400"><i class="fas fa-user-friends mr-1"></i> 2 Guests</span>
-                            <a href="#contact" class="text-navy font-bold text-sm uppercase tracking-wide hover:text-rattan transition">Book Now</a>
+                            <span class="text-xs text-gray-400"><i class="fas fa-user-friends mr-1"></i> 3 Guests</span>
+                            <a href="#inquire" class="text-navy font-bold text-sm uppercase tracking-wide hover:text-rattan transition">Inquire</a>
                         </div>
                     </div>
                 </div>
@@ -237,10 +292,10 @@
                             <h3 class="font-serif text-xl text-navy">Work Retreat</h3>
                             <span class="text-xs font-bold text-rattan uppercase">Medium Term</span>
                         </div>
-                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">High-speed internet meets high-end relaxation. 2-4 weeks.</p>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">High-speed internet meets high-end relaxation. Workation at it's best.</p>
                         <div class="border-t border-gray-100 pt-4 flex justify-between items-center">
-                            <span class="text-xs text-gray-400"><i class="fas fa-user-friends mr-1"></i> 1 Guest</span>
-                            <a href="#contact" class="text-navy font-bold text-sm uppercase tracking-wide hover:text-rattan transition">Book Now</a>
+                            <span class="text-xs text-gray-400"><i class="fas fa-user-friends mr-1"></i> 2 Guest</span>
+                            <a href="#inquire" class="text-navy font-bold text-sm uppercase tracking-wide hover:text-rattan transition">Inquire</a>
                         </div>
                     </div>
                 </div>
@@ -258,18 +313,18 @@
                             <h3 class="font-serif text-xl text-navy">The Sabbatical</h3>
                             <span class="text-xs font-bold text-rattan uppercase">Long Term</span>
                         </div>
-                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">Make Lisettamare your home. Monthly stays for deep work.</p>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">Make Lisettamare your home. Seasonal migrations, welcome Snowbirds!</p>
                         <div class="border-t border-gray-100 pt-4 flex justify-between items-center">
-                            <span class="text-xs text-gray-400"><i class="fas fa-user-friends mr-1"></i> 2 Guests</span>
-                            <a href="#contact" class="text-navy font-bold text-sm uppercase tracking-wide hover:text-rattan transition">Book Now</a>
+                            <span class="text-xs text-gray-400"><i class="fas fa-user-friends mr-1"></i> 4 Guests</span>
+                            <a href="#Inquire" class="text-navy font-bold text-sm uppercase tracking-wide hover:text-rattan transition">Inquire</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="mt-12 text-center">
-                 <a href="#contact" class="inline-block border-b-2 border-navy text-navy font-serif italic text-lg hover:text-rattan hover:border-rattan transition duration-300 pb-1">
-                    View full availability calendar
+                 <a href="#inquiry" class="inline-block border-b-2 border-navy text-navy font-serif italic text-lg hover:text-rattan hover:border-rattan transition duration-300 pb-1">
+                    Message Us
                  </a>
             </div>
         </div>
@@ -286,7 +341,7 @@
                         Lisettamare: <br/> A Sanctuary <span class="italic text-rattan">10 Meters from the Sea</span>
                     </h2>
                     <p class="text-gray-600 text-lg leading-relaxed mb-6 font-light">
-                        The house is situated in Cetraro Marina, baptized "Lisettamare" for its profound connection to the water. It is a space defined by white cream tones, natural wood, and cool limewashed floors.
+                        The house is situated in Cetraro Marina, baptized "Lisettamare" for its profound connection to our origins, and the great blue.
                     </p>
                     <p class="text-gray-600 text-lg leading-relaxed mb-8 font-light">
                         It enjoys a spectacular panorama for relaxing, listening to the voice of the sea, immersing oneself in clear turquoise waters, and meditating at the sight of fiery red sunsets.
@@ -457,11 +512,14 @@
             width="100%" 
             height="100%" 
             frameborder="0" 
-            style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" 
+            style="border:0; filter: grayscale(100%);" 
             allowfullscreen="" 
             aria-hidden="false" 
             tabindex="0">
         </iframe>
+        
+        <!-- Blue Tint Overlay -->
+        <div class="absolute inset-0 bg-navy/30 mix-blend-multiply pointer-events-none"></div>
         
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div class="bg-white/95 backdrop-blur px-8 py-6 rounded-xl shadow-2xl text-center border-t-4 border-navy pointer-events-auto">
@@ -512,71 +570,98 @@
         </div>
     </section>
 
-    <!-- Footer & Contact -->
-    <footer id="contact" class="bg-navy text-cream pt-20 pb-10 scroll-mt-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-16 items-start">
+    <!-- Contact Details Segment (Moved from Footer) -->
+    <section id="contact-details" class="py-16 bg-cream border-b border-rattan/20 scroll-mt-[168px]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-navy p-10 rounded-3xl border border-white/10 relative overflow-hidden group hover:shadow-2xl transition duration-500 shadow-xl">
+                <!-- Decorative background elements -->
+                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-rattan/20 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-white/5 rounded-full blur-3xl"></div>
                 
-                <!-- Col 1: Brand -->
-                <div class="lg:pr-8">
-                    <h3 class="font-serif text-3xl italic mb-6">Lisettamare</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light">
-                        A serene escape engineered for decompression. Short, medium and long term rentals tailored to your needs on the beautiful Calabrian coast.
-                    </p>
-                    <div class="flex space-x-6">
-                        <a href="https://www.instagram.com/lisettamare/" target="_blank" class="text-cream hover:text-rattan transition text-xl"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/lisettamare" target="_blank" class="text-cream hover:text-rattan transition text-xl"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-cream hover:text-rattan transition text-xl"><i class="fab fa-airbnb"></i></a>
+                <h4 class="text-white text-3xl font-serif italic mb-10 relative z-10 text-center">Contact Us</h4>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10 mb-10">
+                    <!-- Address -->
+                    <div class="flex flex-col items-center text-center group-hover:transform group-hover:-translate-y-1 transition duration-300">
+                        <!-- Changed text-rattan to text-white -->
+                        <div class="bg-white/10 p-4 rounded-full mb-4 text-white text-2xl">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <!-- Added animated underline and scale, removed hover:text-rattan -->
+                        <a href="https://maps.app.goo.gl/cYhiEbPtDeYAparX9" target="_blank" class="text-white text-sm leading-relaxed hover-underline-animation hover:scale-105 transition duration-300">Via Indipendenza I Traversa 5<br>Cetraro Marina (CS), Italy</a>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="flex flex-col items-center text-center group-hover:transform group-hover:-translate-y-1 transition duration-300 delay-75">
+                        <!-- Changed text-rattan to text-white -->
+                        <div class="bg-white/10 p-4 rounded-full mb-4 text-white text-2xl">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <!-- Added animated underline and scale, removed hover:text-rattan -->
+                        <a href="mailto:hello@lisettamare.com" class="text-white font-medium hover-underline-animation hover:scale-105 transition duration-300">hello@lisettamare.com</a>
+                    </div>
+
+                    <!-- WhatsApp -->
+                    <div class="flex flex-col items-center text-center group-hover:transform group-hover:-translate-y-1 transition duration-300 delay-100">
+                        <!-- Changed text-rattan to text-white -->
+                        <div class="bg-white/10 p-4 rounded-full mb-4 text-white text-2xl">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <!-- Added animated underline and scale, removed hover:text-rattan -->
+                        <a href="https://wa.me/393534839009" class="text-white font-medium hover-underline-animation hover:scale-105 transition duration-300">+39 353 483 9009</a>
                     </div>
                 </div>
 
-                <!-- Col 2: Navigation -->
-                <div>
-                    <h4 class="text-rattan text-xs font-bold uppercase tracking-widest mb-8">Explore</h4>
-                    <ul class="space-y-4 text-sm text-gray-300 font-light">
-                        <li><a href="#home" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-rattan"></i> Home</a></li>
-                        <li><a href="#stays" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-rattan"></i> The Stays</a></li>
-                        <li><a href="#about" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-rattan"></i> About the House</a></li>
-                        <li><a href="#location" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-rattan"></i> Location</a></li>
-                        <li><a href="#inquiry" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-rattan"></i> Inquire</a></li>
-                    </ul>
+                <!-- Social Icons (Moved Here) -->
+                <div class="flex justify-center space-x-8 relative z-10 border-t border-white/10 pt-8">
+                    <!-- Added animated underline and scale, removed hover:text-rattan -->
+                    <a href="https://www.instagram.com/lisettamare/" target="_blank" class="text-white hover-underline-animation hover:scale-110 transition duration-300 text-2xl"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/lisettamare" target="_blank" class="text-white hover-underline-animation hover:scale-110 transition duration-300 text-2xl"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#inquiry" class="text-white hover-underline-animation hover:scale-110 transition duration-300 text-2xl"><i class="fab fa-airbnb"></i></a>
                 </div>
-
-                <!-- Col 3: Contact Info (Bigger & Detached) -->
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 relative overflow-hidden group hover:bg-white/10 transition duration-500">
-                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-rattan/20 rounded-full blur-2xl"></div>
-                    
-                    <h4 class="text-white text-lg font-serif italic mb-8 relative z-10">Contact Us</h4>
-                    <ul class="space-y-6 relative z-10">
-                        <li class="flex items-start group-hover:transform group-hover:translate-x-1 transition duration-300">
-                            <div class="bg-rattan/20 p-2 rounded-full mr-4 text-rattan">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <span class="text-gray-300 text-sm leading-relaxed">Via Indipendenza I Traversa 5<br>Cetraro Marina (CS), Italy</span>
-                        </li>
-                        <li class="flex items-center group-hover:transform group-hover:translate-x-1 transition duration-300 delay-75">
-                            <div class="bg-rattan/20 p-2 rounded-full mr-4 text-rattan">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <a href="mailto:hello@lisettamare.com" class="text-lg text-white font-medium hover:text-rattan transition">hello@lisettamare.com</a>
-                        </li>
-                        <li class="flex items-center group-hover:transform group-hover:translate-x-1 transition duration-300 delay-100">
-                            <div class="bg-rattan/20 p-2 rounded-full mr-4 text-rattan">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-                            <a href="https://wa.me/393534839009" class="text-lg text-white font-medium hover:text-rattan transition">+39 353 483 9009</a>
-                        </li>
-                    </ul>
-                </div>
-
             </div>
+        </div>
+    </section>
 
-            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs">
-                <p class="mb-4 md:mb-0">&copy; 2023 Lisettamare Rentals. All rights reserved.</p>
-                <div class="space-x-6">
-                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+    <!-- Footer -->
+    <footer id="contact" class="scroll-mt-24">
+        <!-- Upper Part: AirForce Blue -->
+        <div class="bg-navy pt-20 pb-16 text-cream">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                    
+                    <!-- Col 1: Brand -->
+                    <div class="lg:px-8">
+                        <h3 class="font-serif text-3xl italic mb-6 text-white">Lisettamare</h3>
+                        <p class="text-white text-sm leading-relaxed mb-8 font-light max-w-md">
+                            A serene escape focused on your relaxation and decompression. Short, medium and long term rentals tailored to your needs on the beautiful Calabrian coast.
+                        </p>
+                    </div>
+
+                    <!-- Col 2: Navigation -->
+                <div class="lg:px-8 lg:text-right">
+                    <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Explore</h4>
+                    <ul class="flex flex-wrap lg:justify-end gap-6 text-sm text-white font-light">
+                        <!-- Added animated underline and scale, removed hover:text-rattan -->
+                        <li><a href="#home" class="hover-underline-animation hover:scale-105 transition duration-300">Home</a></li>
+                        <li><a href="#stays" class="hover-underline-animation hover:scale-105 transition duration-300">The Stays</a></li>
+                        <li><a href="#about" class="hover-underline-animation hover:scale-105 transition duration-300">About the House</a></li>
+                        <li><a href="#location" class="hover-underline-animation hover:scale-105 transition duration-300">Location</a></li>
+                        <li><a href="#inquiry" class="hover-underline-animation hover:scale-105 transition duration-300">Inquire</a></li>
+                    </ul>
                 </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Part: Black (Dark Gray) -->
+        <div class="bg-gray-900 py-8 text-white text-xs text-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
+                <div class="space-x-6 mb-3">
+                    <a href="#" class="hover:text-rattan transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-rattan transition">Terms of Service</a>
+                </div>
+                <p>&copy; 2026 Lisettamare Rentals. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -627,30 +712,49 @@
 
         // Check Availability Logic - Prefill Inquiry Form
         document.getElementById('check-availability-btn').addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default anchor jump
+
+            const errorDiv = document.getElementById('booking-error');
+            errorDiv.classList.add('hidden');
+            errorDiv.innerText = '';
+
             // Get values from the booking bar
             const checkin = document.getElementById('booking-checkin').value;
             const checkout = document.getElementById('booking-checkout').value;
             const guests = document.getElementById('booking-guests').value;
             
-            // Format the message
+            // 1. Check for missing fields
+            let missingFields = [];
+            if (!checkin) missingFields.push("Check-in Date");
+            if (!checkout) missingFields.push("Check-out Date");
+            if (!guests) missingFields.push("Number of Guests");
+
+            if (missingFields.length > 0) {
+                errorDiv.innerText = "Please select: " + missingFields.join(", ");
+                errorDiv.classList.remove('hidden');
+                return; // Stop execution
+            }
+
+            // 2. Validate Date Logic (Check-out must be after Check-in)
+            if (new Date(checkin) >= new Date(checkout)) {
+                errorDiv.innerText = "Check-out date must be later than Check-in date.";
+                errorDiv.classList.remove('hidden');
+                return; // Stop execution
+            }
+
+            // If valid, proceed formatting the message
             let messageText = "Hello, I wanted to check availability and costs for the dates:";
-            
-            if (checkin) {
-                messageText += ` Check-in: ${checkin},`;
-            } else {
-                messageText += ` Check-in: [Select Date],`;
-            }
-            
-            if (checkout) {
-                messageText += ` Check-out: ${checkout},`;
-            } else {
-                messageText += ` Check-out: [Select Date],`;
-            }
-            
+            messageText += ` Check-in: ${checkin},`;
+            messageText += ` Check-out: ${checkout},`;
             messageText += ` for ${guests}.`;
 
             // Populate the textarea
             document.getElementById('message').value = messageText;
+
+            // Manual scroll to inquiry section
+            document.getElementById('inquiry').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
         });
 
         // Formspree AJAX Submission (Prevents Redirect)
