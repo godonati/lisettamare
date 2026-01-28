@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Lisettamare</title>
+    <link rel="icon" type="image/png" href="/images/favicon_1.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F9F7F2', // Warm White background
+                        charcoal: '#333333', // Body text
+                        navy: '#5D8AA8', // Primary Accent (AirForce Blue)
+                        rattan: '#C4A484', // Secondary Accent (Wood)
+                        sage: '#7C8675', // Subtle Accent (Nature)
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F9F7F2;
+            color: #333333;
+        }
+        
+        /* Animated Underline Effect (Rattan) */
+        .hover-underline-animation-rattan {
+            display: inline-block;
+            position: relative;
+        }
+
+        .hover-underline-animation-rattan::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #C4A484;
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        .hover-underline-animation-rattan:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-cream shadow-md border-b border-rattan/20" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24 relative">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="/images/logo_1_noBG.png" alt="Lisettamare" class="h-16 w-auto" onerror="this.style.display='none'; document.getElementById('fallback-logo-text').style.display='block';">
+                        <span id="fallback-logo-text" class="hidden font-serif text-3xl text-navy tracking-wide font-semibold italic">Lisettamare</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+                    <a href="index.html#home" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">Home</a>
+                    <a href="index.html#stays" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">Stays</a>
+                    <a href="index.html#about" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">House</a>
+                    <a href="index.html#location" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">Location</a>
+                    <a href="index.html#contact-details" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">Contact</a>
+                    <!-- Inquire Button -->
+                    <a href="index.html#inquiry" class="bg-navy text-white px-8 py-3 rounded-full text-sm tracking-widest hover:bg-rattan transition duration-300 shadow-lg">
+                        Inquire
+                    </a>
+                </div>
+
+                 <!-- Mobile menu button -->
+                 <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-navy hover:text-rattan focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+         <!-- Mobile Menu Panel -->
+         <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-rattan/20 absolute w-full">
+            <div class="px-4 pt-4 pb-8 space-y-4 flex flex-col items-center">
+                <a href="index.html" class="text-charcoal hover:text-rattan text-lg font-serif italic">Home</a>
+                <a href="index.html#stays" class="text-charcoal hover:text-rattan text-lg font-serif italic">Stays</a>
+                <a href="index.html#about" class="text-charcoal hover:text-rattan text-lg font-serif italic">House</a>
+                <a href="index.html#contact" class="text-charcoal hover:text-rattan text-lg font-serif italic">Contact</a>
+                <a href="index.html#inquiry" class="bg-navy text-white px-8 py-3 rounded-full w-full text-center mt-4 hover:bg-rattan transition duration-300">Inquire</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-32 pb-20 px-4">
+        <div class="max-w-4xl mx-auto bg-white p-8 md:p-16 rounded-2xl shadow-xl border border-navy/5">
+            
+            <div class="mb-10 text-center md:text-left">
+                <h1 class="font-serif text-4xl md:text-5xl text-navy mb-4">Terms of Service</h1>
+                <p class="text-gray-400 text-sm italic">Last Updated: January 2026</p>
+                <div class="w-24 h-0.5 bg-rattan mt-6 md:mx-0 mx-auto"></div>
+            </div>
+
+            <div class="prose prose-slate max-w-none text-gray-600 font-light leading-relaxed space-y-8">
+                
+                <section>
+                    <h2 class="font-serif text-2xl text-navy mb-4">1. Acceptance of Terms</h2>
+                    <p>By accessing and using the Lisettamare website, you accept and agree to be bound by the terms and provision of this agreement. In addition, when using this website's services, you shall be subject to any posted guidelines or rules applicable to such services.</p>
+                </section>
+
+                <section>
+                    <h2 class="font-serif text-2xl text-navy mb-4">2. Booking Conditions</h2>
+                    <p>All bookings are subject to availability and confirmation by the owner. A deposit may be required to secure your reservation. The remaining balance is typically due upon arrival or as specified in your booking confirmation.</p>
+                </section>
+
+                <section>
+                    <h2 class="font-serif text-2xl text-navy mb-4">3. House Rules</h2>
+                    <p>To ensure a pleasant stay for all guests and neighbors, we ask that you respect the following rules:</p>
+                    <ul class="list-disc pl-5 space-y-2 mt-2">
+                        <li><strong>Check-in/Check-out:</strong> Please respect the agreed times to allow for cleaning.</li>
+                        <li><strong>Noise:</strong> Quiet hours are generally from 11:00 PM to 8:00 AM.</li>
+                        <li><strong>Smoking:</strong> Smoking is strictly prohibited inside the apartments.</li>
+                        <li><strong>Pets:</strong> Pets are only allowed upon prior approval.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="font-serif text-2xl text-navy mb-4">4. Cancellation Policy</h2>
+                    <p>Cancellations made 30 days or more prior to the check-in date may receive a full refund of the deposit. Cancellations made within 30 days of the check-in date may forfeit the deposit. Please refer to your specific booking agreement for detailed terms.</p>
+                </section>
+
+                <section>
+                    <h2 class="font-serif text-2xl text-navy mb-4">5. Liability</h2>
+                    <p>Lisettamare is not responsible for any accidents, injuries, or illness that occurs while on the premises or its facilities. Lisettamare is not responsible for the loss of personal belongings or valuables of the guest.</p>
+                </section>
+
+                <section>
+                    <h2 class="font-serif text-2xl text-navy mb-4">6. Governing Law</h2>
+                    <p>These terms and conditions are governed by the laws of Italy.</p>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy pt-16 pb-8 text-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="font-serif text-2xl italic mb-6 text-white">Lisettamare</h3>
+            <div class="flex justify-center space-x-6 mb-8 text-sm">
+                <a href="index.html" class="hover:text-rattan transition">Home</a>
+                <a href="privacy_policy.html" class="hover:text-rattan transition">Privacy Policy</a>
+            </div>
+            <div class="border-t border-white/10 pt-8">
+                <p class="text-xs text-white/60">&copy; 2026 Lisettamare Rentals. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        function toggleMenu() {
+            menu.classList.toggle('hidden');
+            
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        }
+        btn.addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>
