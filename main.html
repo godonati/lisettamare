@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lisettamare | Sanctuary by the Sea</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F9F7F2', // Warm White background
+                        charcoal: '#333333', // Body text
+                        navy: '#1B2631', // Primary Accent (Deep Sea)
+                        rattan: '#C4A484', // Secondary Accent (Wood)
+                        sage: '#7C8675', // Subtle Accent (Nature)
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?q=80&w=2070&auto=format&fit=crop')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for nuances Tailwind doesn't cover seamlessly */
+        body {
+            background-color: #F9F7F2;
+            color: #333333;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hide scrollbar for clean horizontal scroll if needed */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Hide native calendar picker indicator to use custom icon */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            display: none;
+            -webkit-appearance: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-cream/90 backdrop-blur-md border-b border-rattan/20 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24 relative">
+                <!-- Logo with Fallback -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center">
+                        <img src="/images/logo_1_noBG.png" alt="Lisettamare" class="h-16 w-auto" onerror="this.style.display='none'; document.getElementById('fallback-logo-text').style.display='block';">
+                        <span id="fallback-logo-text" class="hidden font-serif text-3xl text-navy tracking-wide font-semibold italic">Lisettamare</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+                    <a href="#home" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase">Home</a>
+                    <a href="#stays" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase">Stays</a>
+                    <a href="#about" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase">House</a>
+                    <a href="#location" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase">Location</a>
+                    <a href="#contact" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase">Contact</a>
+                    <a href="#inquiry" class="bg-navy text-white px-8 py-3 rounded-full text-sm tracking-widest hover:bg-charcoal transition duration-300 shadow-lg">
+                        Inquire
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-navy hover:text-rattan focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-rattan/20 absolute w-full">
+            <div class="px-4 pt-4 pb-8 space-y-4 flex flex-col items-center">
+                <a href="#home" class="text-charcoal hover:text-rattan text-lg font-serif italic" onclick="toggleMenu()">Home</a>
+                <a href="#stays" class="text-charcoal hover:text-rattan text-lg font-serif italic" onclick="toggleMenu()">Stays</a>
+                <a href="#about" class="text-charcoal hover:text-rattan text-lg font-serif italic" onclick="toggleMenu()">House</a>
+                <a href="#location" class="text-charcoal hover:text-rattan text-lg font-serif italic" onclick="toggleMenu()">Location</a>
+                <a href="#contact" class="text-charcoal hover:text-rattan text-lg font-serif italic" onclick="toggleMenu()">Contact</a>
+                <a href="#inquiry" class="bg-navy text-white px-8 py-3 rounded-full w-full text-center mt-4" onclick="toggleMenu()">Inquire</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-[85vh] md:h-screen flex items-center justify-center pt-24">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="/images/overall_ocean.jpeg" 
+                 alt="Ocean View" 
+                 class="w-full h-full object-cover"
+                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=2070&auto=format&fit=crop';">
+            <div class="absolute inset-0 bg-navy/20 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-cream/90"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto fade-in-up">
+            <p class="text-cream text-sm md:text-base tracking-[0.3em] uppercase mb-4 font-medium drop-shadow-md">
+                Welcome to Italy
+            </p>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight drop-shadow-lg">
+                Your Sanctuary <br/><span class="italic font-light">by the Sea</span>
+            </h1>
+            <p class="text-cream/90 text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto drop-shadow-md">
+                Short, medium, and long-term stays curated for the soul in a luxury rustic setting.
+            </p>
+        </div>
+    </section>
+
+    <!-- Booking Bar (Overlapping) -->
+    <div class="relative z-30 -mt-20 md:-mt-16 px-4">
+        <div class="max-w-6xl mx-auto bg-white p-6 md:p-8 rounded-xl shadow-2xl border border-navy/5">
+            <form action="#inquiry" class="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
+                <!-- Check In -->
+                <div>
+                    <label class="block text-xs font-bold text-rattan uppercase tracking-widest mb-2">Check-in</label>
+                    <div class="flex items-center border-b border-gray-200 py-2 relative">
+                        <input type="date" id="booking-checkin" class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none focus:bg-navy/5 focus:ring-1 focus:ring-navy rounded transition-colors font-sans cursor-text placeholder-gray-400" placeholder="Select Date">
+                        <i class="far fa-calendar text-navy text-lg cursor-pointer hover:text-rattan transition-colors absolute right-2" onclick="this.previousElementSibling.showPicker()"></i>
+                    </div>
+                </div>
+                <!-- Check Out -->
+                <div>
+                    <label class="block text-xs font-bold text-rattan uppercase tracking-widest mb-2">Check-out</label>
+                    <div class="flex items-center border-b border-gray-200 py-2 relative">
+                        <input type="date" id="booking-checkout" class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none focus:bg-navy/5 focus:ring-1 focus:ring-navy rounded transition-colors font-sans cursor-text placeholder-gray-400" placeholder="Select Date">
+                        <i class="far fa-calendar text-navy text-lg cursor-pointer hover:text-rattan transition-colors absolute right-2" onclick="this.previousElementSibling.showPicker()"></i>
+                    </div>
+                </div>
+                <!-- Guests -->
+                <div>
+                    <label class="block text-xs font-bold text-rattan uppercase tracking-widest mb-2">Guests</label>
+                    <div class="flex items-center border-b border-gray-200 py-2 relative">
+                        <select id="booking-guests" class="appearance-none bg-transparent border-none w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none focus:bg-navy/5 focus:ring-1 focus:ring-navy rounded transition-colors font-sans cursor-pointer">
+                            <option value="1 Guest">1 Guest</option>
+                            <option value="2 Guests">2 Guests</option>
+                            <option value="3 Guests">3 Guests</option>
+                            <option value="4+ Guests">4+ Guests</option>
+                        </select>
+                        <i class="fas fa-chevron-down text-navy text-sm absolute right-2 pointer-events-none"></i>
+                    </div>
+                </div>
+                <!-- Button -->
+                <div>
+                    <a href="#inquiry" id="check-availability-btn" class="w-full block text-center bg-navy text-white font-bold py-4 px-6 rounded-lg hover:bg-rattan transition duration-300 uppercase tracking-wider text-sm cursor-pointer">
+                        Check Availability
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Stays Section (Booking Cards) -->
+    <section id="stays" class="pt-28 pb-12 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-rattan tracking-[0.2em] uppercase text-xs font-bold mb-2 block">Our Collections</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-navy mb-4">The Stays</h2>
+                <div class="w-24 h-0.5 bg-navy mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="/images/sunset.jpeg" 
+                             alt="Vacation Mode Bedroom" 
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=2070&auto=format&fit=crop';">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h3 class="font-serif text-xl text-navy">Weekend Escape</h3>
+                            <span class="text-xs font-bold text-rattan uppercase">Short Term</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">Perfect for a quick reset. Enjoy sunrise breakfasts and sunset wines.</p>
+                        <div class="border-t border-gray-100 pt-4 flex justify-between items-center">
+                            <span class="text-xs text-gray-400"><i class="fas fa-user-friends mr-1"></i> 2 Guests</span>
+                            <a href="#contact" class="text-navy font-bold text-sm uppercase tracking-wide hover:text-rattan transition">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 group relative md:-top-8">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="/images/external.jpeg" 
+                             alt="Rustic Workspace" 
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?q=80&w=2070&auto=format&fit=crop';">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h3 class="font-serif text-xl text-navy">Work Retreat</h3>
+                            <span class="text-xs font-bold text-rattan uppercase">Medium Term</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">High-speed internet meets high-end relaxation. 2-4 weeks.</p>
+                        <div class="border-t border-gray-100 pt-4 flex justify-between items-center">
+                            <span class="text-xs text-gray-400"><i class="fas fa-user-friends mr-1"></i> 1 Guest</span>
+                            <a href="#contact" class="text-navy font-bold text-sm uppercase tracking-wide hover:text-rattan transition">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="/images/balcony_apt_7.png" 
+                             alt="Sabbatical Lounge" 
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2100&auto=format&fit=crop';">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h3 class="font-serif text-xl text-navy">The Sabbatical</h3>
+                            <span class="text-xs font-bold text-rattan uppercase">Long Term</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">Make Lisettamare your home. Monthly stays for deep work.</p>
+                        <div class="border-t border-gray-100 pt-4 flex justify-between items-center">
+                            <span class="text-xs text-gray-400"><i class="fas fa-user-friends mr-1"></i> 2 Guests</span>
+                            <a href="#contact" class="text-navy font-bold text-sm uppercase tracking-wide hover:text-rattan transition">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                 <a href="#contact" class="inline-block border-b-2 border-navy text-navy font-serif italic text-lg hover:text-rattan hover:border-rattan transition duration-300 pb-1">
+                    View full availability calendar
+                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (Similar to "Un Posto da Sogno") -->
+    <section id="about" class="pt-28 pb-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
+                <!-- Text Side -->
+                <div class="order-2 lg:order-1 lg:col-span-2">
+                    <span class="text-sage tracking-[0.2em] uppercase text-xs font-bold mb-4 block">The Philosophy</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-navy mb-8 leading-tight">
+                        Lisettamare: <br/> A Sanctuary <span class="italic text-rattan">10 Meters from the Sea</span>
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-6 font-light">
+                        The house is situated in Cetraro Marina, baptized "Lisettamare" for its profound connection to the water. It is a space defined by white cream tones, natural wood, and cool limewashed floors.
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8 font-light">
+                        It enjoys a spectacular panorama for relaxing, listening to the voice of the sea, immersing oneself in clear turquoise waters, and meditating at the sight of fiery red sunsets.
+                    </p>
+                    <a href="#contact" class="inline-block bg-navy text-white px-8 py-3 rounded-full font-medium tracking-wide hover:bg-rattan transition duration-300">
+                        Discover More
+                    </a>
+                </div>
+                <!-- Image Side -->
+                <div class="order-1 lg:order-2 relative lg:col-span-3">
+                    <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-rattan/20 rounded-full z-0"></div>
+                    <img src="/images/topview_ocean_clean.png" 
+                         alt="Interior View" 
+                         class="relative z-10 rounded-lg shadow-xl w-full object-cover h-[500px]"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560185127-6ed189bf02f4?q=80&w=2070&auto=format&fit=crop';">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section (New) -->
+    <section id="reviews" class="py-24 bg-cream border-t border-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-rattan tracking-[0.2em] uppercase text-xs font-bold mb-2 block">Guest Love</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-navy mb-4">Words from our Guests</h2>
+                <div class="flex justify-center items-center space-x-2 mt-4 text-rattan">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <span class="text-charcoal text-sm ml-2 font-medium">(5.0/5.0 on Google)</span>
+                </div>
+            </div>
+
+            <!-- Changed grid-cols to max 3 per row so the 4th wraps underneath -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-navy/5 relative">
+                    <div class="absolute -top-4 left-8 text-6xl text-rattan/20 font-serif leading-none">"</div>
+                    <div class="flex text-rattan mb-4 text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 leading-relaxed">
+                        "Stupenda posizione, affacciata sulla spiaggia e sul lungomare, quando sono seduto a fare colazione, dalla finestra vedo solo il mare, sembra di essere su una nave in crociera!!!"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-navy text-white rounded-full flex items-center justify-center font-serif italic text-lg mr-3">
+                            E
+                        </div>
+                        <div>
+                            <p class="text-navy font-bold text-sm uppercase">Evaristo Donati</p>
+                            <p class="text-gray-400 text-xs">September 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-navy/5 relative">
+                    <div class="absolute -top-4 left-8 text-6xl text-rattan/20 font-serif leading-none">"</div>
+                    <div class="flex text-rattan mb-4 text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 leading-relaxed">
+                        "Que lugar mágico! Minha viagem para Cetraro se tornou ainda mais inesquecível por conta desse lugar! Prédio familiar, com carinha de casa, organizado, ótimo valor e com uma vista deslumbrante. Um verdadeiro achado!<br><br>
+                        Amei ficar no condomínio Lisettamare e, com certeza, eu voltaria para me hospedar lá! Além de tudo, o proprietário foi super solícito e atencioso em proporcionar e organizar tudo para mim e para o meu marido.<br><br>Só elogios!"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-navy text-white rounded-full flex items-center justify-center font-serif italic text-lg mr-3">
+                            N
+                        </div>
+                        <div>
+                            <p class="text-navy font-bold text-sm uppercase">Nathaly Corrêa</p>
+                            <p class="text-gray-400 text-xs">August 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-navy/5 relative">
+                    <div class="absolute -top-4 left-8 text-6xl text-rattan/20 font-serif leading-none">"</div>
+                    <div class="flex text-rattan mb-4 text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 leading-relaxed">
+                        "I visited Cetraro in winter. The balcony of this B&B faces the sea and the view is very beautiful. I like to watch the sunrise and sunset. The magical power of nature, accompanied by the sound of the waves, heals my tense mood and relieves my stress of the year."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-navy text-white rounded-full flex items-center justify-center font-serif italic text-lg mr-3">
+                            H
+                        </div>
+                        <div>
+                            <p class="text-navy font-bold text-sm uppercase">林家合</p>
+                            <p class="text-gray-400 text-xs">December 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-navy/5 relative">
+                    <div class="absolute -top-4 left-8 text-6xl text-rattan/20 font-serif leading-none">"</div>
+                    <div class="flex text-rattan mb-4 text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 leading-relaxed">
+                        "C’est un village calme, typique du sud de l'Italie... marchés locaux où vous pourrez trouver des produits alimentaires régionaux de Calabre... la mer est magnifique !"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-navy text-white rounded-full flex items-center justify-center font-serif italic text-lg mr-3">
+                            T
+                        </div>
+                        <div>
+                            <p class="text-navy font-bold text-sm uppercase">Thierry Auzou</p>
+                            <p class="text-gray-400 text-xs">June 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 5 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-navy/5 relative">
+                    <div class="absolute -top-4 left-8 text-6xl text-rattan/20 font-serif leading-none">"</div>
+                    <div class="flex text-rattan mb-4 text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 leading-relaxed">
+                        "Вы находитесь в поисках кристально чистого моря на юге Италии? Это то самое место! Дом расположен прямо у кромки воды: стоит выйти — и вы на пляже! 🙂"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-navy text-white rounded-full flex items-center justify-center font-serif italic text-lg mr-3">
+                            M
+                        </div>
+                        <div>
+                            <p class="text-navy font-bold text-sm uppercase">Marina Legostaeva</p>
+                            <p class="text-gray-400 text-xs">July 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 6 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-navy/5 relative">
+                    <div class="absolute -top-4 left-8 text-6xl text-rattan/20 font-serif leading-none">"</div>
+                    <div class="flex text-rattan mb-4 text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 leading-relaxed">
+                        "Consiglio vivamente questo meraviglioso pezzo di paradiso! Il mare è letteralmente a due passi esattamente come in foto e i servizi essenziali sono a portata di mano. Un ottimo posto per trascorrere le proprie vacanze anche in famiglia!"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-navy text-white rounded-full flex items-center justify-center font-serif italic text-lg mr-3">
+                            E
+                        </div>
+                        <div>
+                            <p class="text-navy font-bold text-sm uppercase">Elisa Donati</p>
+                            <p class="text-gray-400 text-xs">July 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://www.google.com/travel/search?q=Condominio%20Lisettamare&g2lb=4965990%2C72471280%2C72560029%2C72573224%2C72647020%2C72686036%2C72803964%2C72882230%2C72958624%2C73059275%2C73064764%2C73107089%2C73192290%2C73249147%2C121509213&hl=en-BR&gl=br&cs=1&ssta=1&ts=CAEaKwopEicyJTB4MTMzZmE5MDg1ZGQ5YzM2OToweGM3N2VhNGQ0ZTdiMDQ4NzM&qs=CAEyFENnc0k4NURCdmM2YXFiX0hBUkFCOAI&ap=ugEHcmV2aWV3cw&ictx=111&ved=0CAAQ5JsGahcKEwjozf_lzKqSAxUAAAAAHQAAAAAQBA" target="_blank" class="inline-flex items-center text-navy font-bold uppercase text-xs tracking-widest hover:text-rattan transition">
+                    <img src="/images/google_logo.svg" alt="Google" class="w-4 h-4 mr-2" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg';">
+                    Read all reviews on Google
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section (Interactive Map) -->
+    <section id="location" class="relative h-[500px] bg-gray-100 group overflow-hidden scroll-mt-24">
+        <iframe 
+            src="https://maps.google.com/maps?q=Condominio+Lisettamare,+Via+Indipendenza+I+Traversa+5,+Cetraro+(CS)&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            width="100%" 
+            height="100%" 
+            frameborder="0" 
+            style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" 
+            allowfullscreen="" 
+            aria-hidden="false" 
+            tabindex="0">
+        </iframe>
+        
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div class="bg-white/95 backdrop-blur px-8 py-6 rounded-xl shadow-2xl text-center border-t-4 border-navy pointer-events-auto">
+                <p class="font-serif text-2xl text-navy mb-1">Lisettamare</p>
+                <p class="text-xs text-gray-500 uppercase tracking-widest mb-4">Cetraro Marina (CS), Italy</p>
+                <div class="w-10 h-0.5 bg-rattan mx-auto"></div>
+                <a href="https://maps.app.goo.gl/cYhiEbPtDeYAparX9" target="_blank" class="mt-4 inline-block text-xs text-navy underline hover:text-rattan">Open in Google Maps</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Direct Inquiry Section (New Segment) -->
+    <section id="inquiry" class="pt-28 pb-24 bg-cream border-t border-b border-rattan/20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-rattan tracking-[0.2em] uppercase text-xs font-bold mb-3 block">Get in Touch</span>
+            <h2 class="font-serif text-4xl md:text-5xl text-navy mb-8">Direct Inquiry</h2>
+            <p class="text-gray-600 font-light mb-10 max-w-2xl mx-auto">
+                Have questions about your dates or need specific arrangements? Send us a message directly and we'll get back to you within 24 hours.
+            </p>
+
+            <form action="mailto:hello@lisettamare.com?subject=Inquiry from Website" method="post" enctype="text/plain" class="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-navy/5 text-left">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="name" class="block text-xs font-bold text-navy uppercase tracking-widest mb-2">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Full Name" class="w-full bg-cream border border-gray-200 rounded-lg px-4 py-3 text-navy focus:outline-none focus:border-rattan focus:ring-1 focus:ring-rattan transition">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-xs font-bold text-navy uppercase tracking-widest mb-2">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" class="w-full bg-cream border border-gray-200 rounded-lg px-4 py-3 text-navy focus:outline-none focus:border-rattan focus:ring-1 focus:ring-rattan transition">
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <label for="message" class="block text-xs font-bold text-navy uppercase tracking-widest mb-2">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your trip..." class="w-full bg-cream border border-gray-200 rounded-lg px-4 py-3 text-navy focus:outline-none focus:border-rattan focus:ring-1 focus:ring-rattan transition"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="inline-block bg-navy text-white px-10 py-4 rounded-full font-medium tracking-wide hover:bg-rattan transition duration-300 shadow-lg transform hover:-translate-y-1">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer & Contact -->
+    <footer id="contact" class="bg-navy text-cream pt-20 pb-10 scroll-mt-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-16 items-start">
+                
+                <!-- Col 1: Brand -->
+                <div class="lg:pr-8">
+                    <h3 class="font-serif text-3xl italic mb-6">Lisettamare</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light">
+                        A serene escape engineered for decompression. Short, medium and long term rentals tailored to your needs on the beautiful Calabrian coast.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="https://www.instagram.com/lisettamare/" target="_blank" class="text-cream hover:text-rattan transition text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/lisettamare" target="_blank" class="text-cream hover:text-rattan transition text-xl"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-cream hover:text-rattan transition text-xl"><i class="fab fa-airbnb"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div>
+                    <h4 class="text-rattan text-xs font-bold uppercase tracking-widest mb-8">Explore</h4>
+                    <ul class="space-y-4 text-sm text-gray-300 font-light">
+                        <li><a href="#home" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-rattan"></i> Home</a></li>
+                        <li><a href="#stays" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-rattan"></i> The Stays</a></li>
+                        <li><a href="#about" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-rattan"></i> About the House</a></li>
+                        <li><a href="#location" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-rattan"></i> Location</a></li>
+                        <li><a href="#inquiry" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-rattan"></i> Inquire</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Contact Info (Bigger & Detached) -->
+                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 relative overflow-hidden group hover:bg-white/10 transition duration-500">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-rattan/20 rounded-full blur-2xl"></div>
+                    
+                    <h4 class="text-white text-lg font-serif italic mb-8 relative z-10">Contact Us</h4>
+                    <ul class="space-y-6 relative z-10">
+                        <li class="flex items-start group-hover:transform group-hover:translate-x-1 transition duration-300">
+                            <div class="bg-rattan/20 p-2 rounded-full mr-4 text-rattan">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <span class="text-gray-300 text-sm leading-relaxed">Via Indipendenza I Traversa 5<br>Cetraro Marina (CS), Italy</span>
+                        </li>
+                        <li class="flex items-center group-hover:transform group-hover:translate-x-1 transition duration-300 delay-75">
+                            <div class="bg-rattan/20 p-2 rounded-full mr-4 text-rattan">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <a href="mailto:hello@lisettamare.com" class="text-lg text-white font-medium hover:text-rattan transition">hello@lisettamare.com</a>
+                        </li>
+                        <li class="flex items-center group-hover:transform group-hover:translate-x-1 transition duration-300 delay-100">
+                            <div class="bg-rattan/20 p-2 rounded-full mr-4 text-rattan">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <a href="https://wa.me/393534839009" class="text-lg text-white font-medium hover:text-rattan transition">+39 353 483 9009</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs">
+                <p class="mb-4 md:mb-0">&copy; 2023 Lisettamare Rentals. All rights reserved.</p>
+                <div class="space-x-6">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/393534839009" target="_blank" 
+       class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center hover:bg-[#20bd5a] transition-all duration-300 hover:scale-110 group border-2 border-white">
+        <i class="fab fa-whatsapp text-4xl"></i>
+        <span class="absolute right-20 bg-white text-navy px-3 py-2 rounded-lg shadow-xl text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            Chat with us
+        </span>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        function toggleMenu() {
+            menu.classList.toggle('hidden');
+            
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
+
+        // Navbar Background Change on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('bg-cream/90');
+                navbar.classList.add('bg-cream');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('bg-cream/90');
+                navbar.classList.remove('bg-cream');
+            }
+        });
+
+        // Check Availability Logic - Prefill Inquiry Form
+        document.getElementById('check-availability-btn').addEventListener('click', function(e) {
+            // Get values from the booking bar
+            const checkin = document.getElementById('booking-checkin').value;
+            const checkout = document.getElementById('booking-checkout').value;
+            const guests = document.getElementById('booking-guests').value;
+            
+            // Format the message
+            let messageText = "Hello, I wanted to check availability and costs for the dates:";
+            
+            if (checkin) {
+                messageText += ` Check-in: ${checkin},`;
+            } else {
+                messageText += ` Check-in: [Select Date],`;
+            }
+            
+            if (checkout) {
+                messageText += ` Check-out: ${checkout},`;
+            } else {
+                messageText += ` Check-out: [Select Date],`;
+            }
+            
+            messageText += ` for ${guests}.`;
+
+            // Populate the textarea
+            document.getElementById('message').value = messageText;
+        });
+    </script>
+</body>
+</html>
