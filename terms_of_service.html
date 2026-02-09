@@ -1,33 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service | Lisettamare</title>
     <link rel="icon" type="image/png" href="/images/favicon_1.png">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        cream: '#F9F7F2', // Warm White background
-                        charcoal: '#333333', // Body text
-                        navy: '#5D8AA8', // Primary Accent (AirForce Blue)
-                        rattan: '#C4A484', // Secondary Accent (Wood)
-                        sage: '#7C8675', // Subtle Accent (Nature)
+                        cream: '#F9F7F2', 
+                        charcoal: '#333333', 
+                        navy: '#5D8AA8', 
+                        rattan: '#C4A484', 
+                        sage: '#7C8675', 
                     },
                     fontFamily: {
                         serif: ['"Playfair Display"', 'serif'],
@@ -67,36 +63,56 @@
             transform: scaleX(1);
             transform-origin: bottom left;
         }
+
+        /* --- LANGUAGE TOGGLE LOGIC --- */
+        body.en-mode .lang-it { display: none !important; }
+        body:not(.en-mode) .lang-en { display: none !important; }
+        
+        /* Button Active States */
+        .lang-btn.active { background-color: #5D8AA8; color: white; border-color: #5D8AA8; }
+        .lang-btn { transition: all 0.3s ease; }
     </style>
 </head>
-<body class="font-sans antialiased overflow-x-hidden flex flex-col min-h-screen">
+<body class="en-mode font-sans antialiased overflow-x-hidden flex flex-col min-h-screen">
 
-    <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-cream shadow-md border-b border-rattan/20" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24 relative">
-                <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="index.html" class="flex items-center">
-                        <img src="/images/logo_1_noBG.png" alt="Lisettamare" class="h-16 w-auto" onerror="this.style.display='none'; document.getElementById('fallback-logo-text').style.display='block';">
+                        <img src="/images/logo_1_alpha.png" alt="Lisettamare" class="h-16 w-auto" onerror="this.style.display='none'; document.getElementById('fallback-logo-text').style.display='block';">
                         <span id="fallback-logo-text" class="hidden font-serif text-3xl text-navy tracking-wide font-semibold italic">Lisettamare</span>
                     </a>
                 </div>
 
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
-                    <a href="index.html#home" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">Home</a>
-                    <a href="index.html#stays" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">Stays</a>
-                    <a href="index.html#about" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">House</a>
-                    <a href="index.html#location" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">Location</a>
-                    <a href="index.html#contact-details" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">Contact</a>
-                    <!-- Inquire Button -->
+                    <a href="index.html#home" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">
+                        <span class="lang-en">Home</span><span class="lang-it">Home</span>
+                    </a>
+                    <a href="index.html#stays" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">
+                        <span class="lang-en">Stays</span><span class="lang-it">Soggiorni</span>
+                    </a>
+                    <a href="index.html#about" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">
+                        <span class="lang-en">House</span><span class="lang-it">Casa</span>
+                    </a>
+                    <a href="index.html#location" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">
+                        <span class="lang-en">Location</span><span class="lang-it">Posizione</span>
+                    </a>
+                    <a href="index.html#contact-details" class="text-charcoal hover:text-rattan transition duration-300 text-sm tracking-widest uppercase hover-underline-animation-rattan hover:scale-105">
+                        <span class="lang-en">Contact</span><span class="lang-it">Contatti</span>
+                    </a>
                     <a href="index.html#inquiry" class="bg-navy text-white px-8 py-3 rounded-full text-sm tracking-widest hover:bg-rattan transition duration-300 shadow-lg">
-                        Inquire
+                        <span class="lang-en">Inquire</span><span class="lang-it">Richiedi</span>
                     </a>
                 </div>
 
-                 <!-- Mobile menu button -->
+                <div class="hidden md:flex items-center space-x-2 ml-auto">
+                    <div class="flex bg-white/50 rounded-full p-1 border border-navy/10">
+                        <button onclick="setLanguage('en')" class="lang-btn lang-btn-en px-3 py-1 rounded-full text-sm font-medium active">🇺🇸</button>
+                        <button onclick="setLanguage('it')" class="lang-btn lang-btn-it px-3 py-1 rounded-full text-sm font-medium text-navy hover:text-rattan">🇮🇹</button>
+                    </div>
+                </div>
+
                  <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-navy hover:text-rattan focus:outline-none p-2">
                         <i class="fas fa-bars text-2xl"></i>
@@ -104,85 +120,173 @@
                 </div>
             </div>
         </div>
-         <!-- Mobile Menu Panel -->
          <div id="mobile-menu" class="hidden md:hidden bg-cream border-t border-rattan/20 absolute w-full">
             <div class="px-4 pt-4 pb-8 space-y-4 flex flex-col items-center">
+                <div class="flex bg-white rounded-full p-1 border border-navy/10 mb-4">
+                    <button onclick="setLanguage('en')" class="lang-btn lang-btn-en px-4 py-2 rounded-full text-sm font-medium active">🇺🇸 EN</button>
+                    <button onclick="setLanguage('it')" class="lang-btn lang-btn-it px-4 py-2 rounded-full text-sm font-medium text-navy">🇮🇹 IT</button>
+                </div>
+
                 <a href="index.html" class="text-charcoal hover:text-rattan text-lg font-serif italic">Home</a>
-                <a href="index.html#stays" class="text-charcoal hover:text-rattan text-lg font-serif italic">Stays</a>
-                <a href="index.html#about" class="text-charcoal hover:text-rattan text-lg font-serif italic">House</a>
-                <a href="index.html#contact" class="text-charcoal hover:text-rattan text-lg font-serif italic">Contact</a>
-                <a href="index.html#inquiry" class="bg-navy text-white px-8 py-3 rounded-full w-full text-center mt-4 hover:bg-rattan transition duration-300">Inquire</a>
+                <a href="index.html#stays" class="text-charcoal hover:text-rattan text-lg font-serif italic">
+                    <span class="lang-en">Stays</span><span class="lang-it">Soggiorni</span>
+                </a>
+                <a href="index.html#about" class="text-charcoal hover:text-rattan text-lg font-serif italic">
+                    <span class="lang-en">House</span><span class="lang-it">Casa</span>
+                </a>
+                <a href="index.html#contact" class="text-charcoal hover:text-rattan text-lg font-serif italic">
+                    <span class="lang-en">Contact</span><span class="lang-it">Contatti</span>
+                </a>
+                <a href="index.html#inquiry" class="bg-navy text-white px-8 py-3 rounded-full w-full text-center mt-4 hover:bg-rattan transition duration-300">
+                    <span class="lang-en">Inquire</span><span class="lang-it">Richiedi</span>
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="flex-grow pt-32 pb-20 px-4">
         <div class="max-w-4xl mx-auto bg-white p-8 md:p-16 rounded-2xl shadow-xl border border-navy/5">
             
             <div class="mb-10 text-center md:text-left">
-                <h1 class="font-serif text-4xl md:text-5xl text-navy mb-4">Terms of Service</h1>
-                <p class="text-gray-400 text-sm italic">Last Updated: January 2026</p>
+                <h1 class="font-serif text-4xl md:text-5xl text-navy mb-4">
+                    <span class="lang-en">Terms of Service</span>
+                    <span class="lang-it">Termini di Servizio</span>
+                </h1>
+                <p class="text-gray-400 text-sm italic">
+                    <span class="lang-en">Last Updated: January 2026</span>
+                    <span class="lang-it">Ultimo aggiornamento: Gennaio 2026</span>
+                </p>
                 <div class="w-24 h-0.5 bg-rattan mt-6 md:mx-0 mx-auto"></div>
             </div>
 
             <div class="prose prose-slate max-w-none text-gray-600 font-light leading-relaxed space-y-8">
                 
                 <section>
-                    <h2 class="font-serif text-2xl text-navy mb-4">1. Acceptance of Terms</h2>
-                    <p>By accessing and using the Lisettamare website, you accept and agree to be bound by the terms and provision of this agreement. In addition, when using this website's services, you shall be subject to any posted guidelines or rules applicable to such services.</p>
+                    <h2 class="font-serif text-2xl text-navy mb-4">
+                        <span class="lang-en">1. Acceptance of Terms</span>
+                        <span class="lang-it">1. Accettazione dei Termini</span>
+                    </h2>
+                    <p class="lang-en">By accessing and using the Lisettamare website, you accept and agree to be bound by the terms and provision of this agreement. In addition, when using this website's services, you shall be subject to any posted guidelines or rules applicable to such services.</p>
+                    <p class="lang-it">Accedendo e utilizzando il sito web Lisettamare, accetti e accosenti di essere vincolato dai termini e dalle disposizioni del presente accordo. Inoltre, quando utilizzi i servizi di questo sito web, sarai soggetto a qualsiasi linea guida o regola pubblicata applicabile a tali servizi.</p>
                 </section>
 
                 <section>
-                    <h2 class="font-serif text-2xl text-navy mb-4">2. Booking Conditions</h2>
-                    <p>All bookings are subject to availability and confirmation by the owner. A deposit may be required to secure your reservation. The remaining balance is typically due upon arrival or as specified in your booking confirmation.</p>
+                    <h2 class="font-serif text-2xl text-navy mb-4">
+                        <span class="lang-en">2. Booking Conditions</span>
+                        <span class="lang-it">2. Condizioni di Prenotazione</span>
+                    </h2>
+                    <p class="lang-en">All bookings are subject to availability and confirmation by the owner. A deposit may be required to secure your reservation. The remaining balance is typically due upon arrival or as specified in your booking confirmation.</p>
+                    <p class="lang-it">Tutte le prenotazioni sono soggette a disponibilità e conferma da parte del proprietario. Potrebbe essere richiesto un deposito per garantire la prenotazione. Il saldo rimanente è generalmente dovuto all'arrivo o come specificato nella conferma della prenotazione.</p>
                 </section>
 
                 <section>
-                    <h2 class="font-serif text-2xl text-navy mb-4">3. House Rules</h2>
-                    <p>To ensure a pleasant stay for all guests and neighbors, we ask that you respect the following rules:</p>
-                    <ul class="list-disc pl-5 space-y-2 mt-2">
-                        <li><strong>Check-in/Check-out:</strong> Please respect the agreed times to allow for cleaning.</li>
-                        <li><strong>Noise:</strong> Quiet hours are generally from 11:00 PM to 8:00 AM.</li>
-                        <li><strong>Smoking:</strong> Smoking is strictly prohibited inside the apartments.</li>
-                        <li><strong>Pets:</strong> Pets are only allowed upon prior approval.</li>
-                    </ul>
+                    <h2 class="font-serif text-2xl text-navy mb-4">
+                        <span class="lang-en">3. House Rules</span>
+                        <span class="lang-it">3. Regole della Casa</span>
+                    </h2>
+                    <div class="lang-en">
+                        <p>To ensure a pleasant stay for all guests and neighbors, we ask that you respect the following rules:</p>
+                        <ul class="list-disc pl-5 space-y-2 mt-2">
+                            <li><strong>Check-in/Check-out:</strong> Please respect the agreed times to allow for cleaning.</li>
+                            <li><strong>Noise:</strong> Quiet hours are generally from 11:00 PM to 8:00 AM.</li>
+                            <li><strong>Smoking:</strong> Smoking is strictly prohibited inside the apartments.</li>
+                            <li><strong>Pets:</strong> Pets are only allowed upon prior approval.</li>
+                        </ul>
+                    </div>
+                    <div class="lang-it">
+                        <p>Per garantire un soggiorno piacevole a tutti gli ospiti e ai vicini, chiediamo di rispettare le seguenti regole:</p>
+                        <ul class="list-disc pl-5 space-y-2 mt-2">
+                            <li><strong>Check-in/Check-out:</strong> Si prega di rispettare gli orari concordati per consentire le pulizie.</li>
+                            <li><strong>Rumore:</strong> Le ore di silenzio sono generalmente dalle 23:00 alle 8:00.</li>
+                            <li><strong>Fumo:</strong> È severamente vietato fumare all'interno degli appartamenti.</li>
+                            <li><strong>Animali Domestici:</strong> Gli animali domestici sono ammessi solo previa approvazione.</li>
+                        </ul>
+                    </div>
                 </section>
 
                 <section>
-                    <h2 class="font-serif text-2xl text-navy mb-4">4. Cancellation Policy</h2>
-                    <p>Cancellations made 30 days or more prior to the check-in date may receive a full refund of the deposit. Cancellations made within 30 days of the check-in date may forfeit the deposit. Please refer to your specific booking agreement for detailed terms.</p>
+                    <h2 class="font-serif text-2xl text-navy mb-4">
+                        <span class="lang-en">4. Cancellation Policy</span>
+                        <span class="lang-it">4. Politica di Cancellazione</span>
+                    </h2>
+                    <p class="lang-en">Cancellations made 30 days or more prior to the check-in date may receive a full refund of the deposit. Cancellations made within 30 days of the check-in date may forfeit the deposit. Please refer to your specific booking agreement for detailed terms.</p>
+                    <p class="lang-it">Le cancellazioni effettuate 30 giorni o più prima della data di check-in possono ricevere un rimborso completo del deposito. Le cancellazioni effettuate entro 30 giorni dalla data di check-in possono comportare la perdita del deposito. Si prega di fare riferimento al contratto di prenotazione specifico per i termini dettagliati.</p>
                 </section>
 
                 <section>
-                    <h2 class="font-serif text-2xl text-navy mb-4">5. Liability</h2>
-                    <p>Lisettamare is not responsible for any accidents, injuries, or illness that occurs while on the premises or its facilities. Lisettamare is not responsible for the loss of personal belongings or valuables of the guest.</p>
+                    <h2 class="font-serif text-2xl text-navy mb-4">
+                        <span class="lang-en">5. Liability</span>
+                        <span class="lang-it">5. Responsabilità</span>
+                    </h2>
+                    <p class="lang-en">Lisettamare is not responsible for any accidents, injuries, or illness that occurs while on the premises or its facilities. Lisettamare is not responsible for the loss of personal belongings or valuables of the guest.</p>
+                    <p class="lang-it">Lisettamare non è responsabile per incidenti, lesioni o malattie che si verificano all'interno dei locali o delle sue strutture. Lisettamare non è responsabile per la perdita di effetti personali o oggetti di valore dell'ospite.</p>
                 </section>
 
                 <section>
-                    <h2 class="font-serif text-2xl text-navy mb-4">6. Governing Law</h2>
-                    <p>These terms and conditions are governed by the laws of Italy.</p>
+                    <h2 class="font-serif text-2xl text-navy mb-4">
+                        <span class="lang-en">6. Governing Law</span>
+                        <span class="lang-it">6. Legge Applicabile</span>
+                    </h2>
+                    <p class="lang-en">These terms and conditions are governed by the laws of Italy.</p>
+                    <p class="lang-it">Questi termini e condizioni sono regolati dalle leggi dello Stato Italiano.</p>
                 </section>
 
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-navy pt-16 pb-8 text-cream">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h3 class="font-serif text-2xl italic mb-6 text-white">Lisettamare</h3>
             <div class="flex justify-center space-x-6 mb-8 text-sm">
-                <a href="index.html" class="hover:text-rattan transition">Home</a>
-                <a href="privacy_policy.html" class="hover:text-rattan transition">Privacy Policy</a>
+                <a href="index.html" class="hover:text-rattan transition">
+                    <span class="lang-en">Home</span><span class="lang-it">Home</span>
+                </a>
+                <a href="privacy_policy.html" class="hover:text-rattan transition">
+                    <span class="lang-en">Privacy Policy</span><span class="lang-it">Privacy Policy</span>
+                </a>
             </div>
             <div class="border-t border-white/10 pt-8">
-                <p class="text-xs text-white/60">&copy; 2026 Lisettamare Rentals. All rights reserved.</p>
+                <p class="text-xs text-white/60">
+                    <span class="lang-en">&copy; 2026 Lisettamare Rentals. All rights reserved.</span>
+                    <span class="lang-it">&copy; 2026 Lisettamare Rentals. Tutti i diritti riservati.</span>
+                </p>
             </div>
         </div>
     </footer>
 
     <script>
+        // LANGUAGE SWITCHER LOGIC
+        function setLanguage(lang) {
+            const body = document.body;
+            const btnsEn = document.querySelectorAll('.lang-btn-en');
+            const btnsIt = document.querySelectorAll('.lang-btn-it');
+
+            if (lang === 'en') {
+                body.classList.add('en-mode');
+                // Update buttons style
+                btnsEn.forEach(btn => {
+                    btn.classList.add('active');
+                    btn.classList.remove('text-navy', 'hover:text-rattan');
+                });
+                btnsIt.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.classList.add('text-navy', 'hover:text-rattan');
+                });
+            } else {
+                body.classList.remove('en-mode');
+                // Update buttons style
+                btnsIt.forEach(btn => {
+                    btn.classList.add('active');
+                    btn.classList.remove('text-navy', 'hover:text-rattan');
+                });
+                btnsEn.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.classList.add('text-navy', 'hover:text-rattan');
+                });
+            }
+        }
+
         // Mobile Menu Toggle Logic
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
