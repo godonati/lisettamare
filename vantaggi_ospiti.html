@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="it">
-<head>
+<html lang="en"> <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vantaggi Ospiti - Lisettamare</title>
+<title>Guest Benefits - Lisettamare</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,25 +32,73 @@
         color: var(--text-dark);
         line-height: 1.6;
         -webkit-font-smoothing: antialiased;
-        overflow-x: hidden; /* Prevent scrollbar from slide-ins */
+        overflow-x: hidden;
     }
 
-    /* --- ANIMATIONS --- */
+    /* --- LANGUAGE SWITCHER STYLES --- */
+    .lang-switch-container {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        z-index: 1000;
+        display: flex;
+        gap: 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        border-radius: 25px;
+        background: white;
+    }
+
+    .lang-btn {
+        background: var(--white);
+        border: 1px solid var(--primary-blue);
+        color: var(--text-dark);
+        padding: 10px 18px;
+        font-family: 'Lato', sans-serif;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        line-height: 1;
+    }
+
+    /* Active State (Selected Language) */
+    .lang-btn.active {
+        background: var(--primary-blue);
+        color: var(--white);
+        font-weight: 700;
+    }
+
+    .lang-btn:first-child {
+        border-radius: 25px 0 0 25px;
+        border-right: none;
+    }
+
+    .lang-btn:last-child {
+        border-radius: 0 25px 25px 0;
+    }
     
-    /* Float animation for the Logo (Bobbing like the sea) */
+    .lang-btn:hover:not(.active) {
+        background-color: #f0f4f7;
+    }
+
+    /* Logic to hide/show languages */
+    body.en-mode .lang-it { display: none !important; }
+    body:not(.en-mode) .lang-en { display: none !important; }
+
+    /* --- ANIMATIONS --- */
     @keyframes float {
         0% { transform: translateY(0px); }
         50% { transform: translateY(-8px); }
         100% { transform: translateY(0px); }
     }
 
-    /* Fade In Up for content */
     @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Pulse for the CTA Button */
     @keyframes pulse {
         0% { box-shadow: 0 0 0 0 rgba(92, 122, 144, 0.4); }
         70% { box-shadow: 0 0 0 10px rgba(92, 122, 144, 0); }
@@ -78,12 +125,12 @@
         margin: 0 auto;
         padding: 40px 20px;
         text-align: center;
+        position: relative; 
     }
 
     /* Logo Section */
     .logo-container {
         margin-bottom: 20px;
-        /* Apply the float animation */
         animation: float 4s ease-in-out infinite; 
     }
     
@@ -99,7 +146,8 @@
         padding: 0 0 30px 0;
         border-bottom: 1px solid var(--border-color);
         margin-bottom: 40px;
-        animation: fadeInUp 0.8s ease-out; /* Animate entrance */
+        animation: fadeInUp 0.8s ease-out;
+        padding-top: 20px;
     }
 
     .hero h1 {
@@ -109,14 +157,14 @@
         color: var(--primary-blue);
     }
 
-    /* CTA Section (The Button) */
+    /* CTA Section */
     .cta-section {
         background: var(--white);
         padding: 40px;
         border-radius: 12px;
         box-shadow: 0 10px 40px rgba(0,0,0,0.05);
         margin-bottom: 50px;
-        animation: fadeInUp 0.8s ease-out 0.2s backwards; /* Delayed entrance */
+        animation: fadeInUp 0.8s ease-out 0.2s backwards;
         transition: transform 0.3s ease;
     }
 
@@ -136,18 +184,17 @@
         letter-spacing: 1px;
         font-size: 1rem;
         transition: all 0.3s ease;
-        /* Apply pulse animation */
         animation: pulse 2s infinite;
     }
 
     .cta-button:hover {
         background-color: var(--primary-blue-hover);
-        transform: scale(1.05); /* Grow slightly on hover */
+        transform: scale(1.05);
         box-shadow: 0 10px 25px rgba(92, 122, 144, 0.4);
-        animation: none; /* Stop pulsing on hover */
+        animation: none;
     }
 
-    /* Code Box - Centralized */
+    /* Code Box */
     .code-section {
         margin-bottom: 50px;
         animation: fadeInUp 0.8s ease-out 0.4s backwards;
@@ -199,14 +246,11 @@
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         border: 1px solid rgba(0,0,0,0.02);
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
-        
-        /* Initial state for animation */
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         opacity: 0;
         animation: fadeInUp 0.5s ease-out forwards;
     }
 
-    /* Staggered Animation Delays for List Items */
     .step-item:nth-child(1) { animation-delay: 0.6s; }
     .step-item:nth-child(2) { animation-delay: 0.7s; }
     .step-item:nth-child(3) { animation-delay: 0.8s; }
@@ -240,7 +284,6 @@
         transition: transform 0.5s ease;
     }
 
-    /* Spin the number on hover */
     .step-item:hover::before {
         transform: translateY(-50%) rotate(360deg);
         background-color: var(--primary-blue);
@@ -265,7 +308,20 @@
     /* --- MOBILE RESPONSIVENESS --- */
     @media (max-width: 600px) {
         .container { padding: 25px 15px; }
-        .logo-img { width: 100px; }
+        
+        .lang-switch-container { 
+            position: fixed; 
+            top: 15px; 
+            right: 15px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); 
+        }
+        
+        .lang-btn {
+            padding: 12px 20px;
+            font-size: 1.1rem;
+        }
+
+        .logo-img { width: 100px; margin-top: 20px; }
         .hero h1 { font-size: 2.2rem; }
         .hero .subtitle { font-size: 1rem; }
         .cta-section { padding: 30px 20px; margin-bottom: 40px; }
@@ -277,12 +333,18 @@
     }
 </style>
 </head>
-<body>
+<body class="en-mode">
 
     <div class="container">
 
+        <div class="lang-switch-container">
+            <button class="lang-btn active" onclick="setLanguage('en')" id="btn-en">🇺🇸</button>
+            <button class="lang-btn" onclick="setLanguage('it')" id="btn-it">🇮🇹</button>
+        </div>
+
         <header class="hero">
-            <h1>Benvenuti a</h1>
+            <h1 class="lang-it">Benvenuti a</h1>
+            <h1 class="lang-en">Welcome to</h1>
             <br>
             <div class="logo-container">
                 <img src="images/logo_1_alpha.png" alt="Lisettamare Logo" class="logo-img">
@@ -290,43 +352,96 @@
         </header>
 
         <section class="cta-section">
-            <p class="subtitle">
+            <p class="subtitle lang-it">
                 Durante il soggiorno a Lisettamare puoi accedere a vantaggi riservati presso attività locali.
             </p>
+            <p class="subtitle lang-en">
+                During your stay at Lisettamare, you can access exclusive benefits at local businesses.
+            </p>
             <br>
-            <a href="https://script.google.com/macros/s/AKfycbwE5yRLevNHGb8UZXbhp0-QZOTh5StD7CZnoTNa5f_QqA8dg-VmtRerjzDDhPnGH1Em/exec?action=list" class="cta-button">Accedi ai Vantaggi</a>
+            <a href="https://script.google.com/macros/s/AKfycbwE5yRLevNHGb8UZXbhp0-QZOTh5StD7CZnoTNa5f_QqA8dg-VmtRerjzDDhPnGH1Em/exec?action=list" class="cta-button">
+                <span class="lang-it">Accedi ai Vantaggi</span>
+                <span class="lang-en">Access Benefits</span>
+            </a>
         </section>
 
         <section class="code-section">
             <div class="code-box">
-                <h3>Il tuo Codice Soggiorno</h3>
-                <p>Per accedere ai vantaggi, devi usare il <strong>Codice Soggiorno</strong> che hai ricevuto al check-in.</p>
+                <h3 class="lang-it">Il tuo Codice Soggiorno</h3>
+                <h3 class="lang-en">Your Guest Code</h3>
+                
+                <p class="lang-it">Per accedere ai vantaggi, devi usare il <strong>Codice Soggiorno</strong> che hai ricevuto al check-in.</p>
+                <p class="lang-en">To access the benefits, you must use the <strong>Guest Code</strong> you received at check-in.</p>
                 <br>
-                <p style="margin-top: 20px; font-style: italic; font-size: 0.85rem;">
+                <p class="lang-it" style="margin-top: 20px; font-style: italic; font-size: 0.85rem;">
                     Le agevolazioni sono personali, valide solo per gli ospiti alloggiati e attive esclusivamente per la durata del soggiorno.
+                </p>
+                <p class="lang-en" style="margin-top: 20px; font-style: italic; font-size: 0.85rem;">
+                    The benefits are personal, valid only for registered guests, and active exclusively for the duration of the stay.
                 </p>
             </div>
         </section>
 
         <section class="steps-section">
-            <h2>Come funziona</h2>
+            <h2 class="lang-it">Come funziona</h2>
+            <h2 class="lang-en">How it works</h2>
+
             <ol class="step-list">
-                <li class="step-item"><p class="step-text">Clicca su "Accedi ai Vantaggi"</p></li>
-                <li class="step-item"><p class="step-text">Scegli il Partner desiderato</p></li>
-                <li class="step-item"><p class="step-text">Inserisci il Codice Soggiorno</p></li>
-                <li class="step-item"><p class="step-text">Genera il voucher</p></li>
-                <li class="step-item"><p class="step-text">Mostra il QR Code al partner</p></li>
-                <li class="step-item"><p class="step-text">Ricevi lo sconto</p></li>
+                <li class="step-item">
+                    <p class="step-text lang-it">Clicca su "Accedi ai Vantaggi"</p>
+                    <p class="step-text lang-en">Click on "Access Benefits"</p>
+                </li>
+                <li class="step-item">
+                    <p class="step-text lang-it">Scegli il Partner desiderato</p>
+                    <p class="step-text lang-en">Choose your desired Partner</p>
+                </li>
+                <li class="step-item">
+                    <p class="step-text lang-it">Inserisci il Codice Soggiorno</p>
+                    <p class="step-text lang-en">Enter your Guest Code</p>
+                </li>
+                <li class="step-item">
+                    <p class="step-text lang-it">Genera il voucher</p>
+                    <p class="step-text lang-en">Generate the voucher</p>
+                </li>
+                <li class="step-item">
+                    <p class="step-text lang-it">Mostra il QR Code al partner</p>
+                    <p class="step-text lang-en">Show the QR Code to the partner</p>
+                </li>
+                <li class="step-item">
+                    <p class="step-text lang-it">Ricevi lo sconto</p>
+                    <p class="step-text lang-en">Receive your discount</p>
+                </li>
             </ol>
         </section>
 
         <footer class="note-section">
-            <p style="margin-top: 20px; font-style: italic; font-size: 0.85rem;">
+            <p class="lang-it" style="margin-top: 20px; font-style: italic; font-size: 0.85rem;">
                 Lisettamare collabora con operatori locali selezionati per valorizzare il territorio e migliorare l’esperienza degli ospiti.
+            </p>
+            <p class="lang-en" style="margin-top: 20px; font-style: italic; font-size: 0.85rem;">
+                Lisettamare collaborates with selected local operators to enhance the territory and improve the guest experience.
             </p>
         </footer>
 
     </div>
+
+    <script>
+        function setLanguage(lang) {
+            const body = document.body;
+            const btnIt = document.getElementById('btn-it');
+            const btnEn = document.getElementById('btn-en');
+
+            if (lang === 'en') {
+                body.classList.add('en-mode');
+                btnIt.classList.remove('active');
+                btnEn.classList.add('active');
+            } else {
+                body.classList.remove('en-mode');
+                btnEn.classList.remove('active');
+                btnIt.classList.add('active');
+            }
+        }
+    </script>
 
 </body>
 </html>
