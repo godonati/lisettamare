@@ -35,52 +35,49 @@
         overflow-x: hidden;
     }
 
-    /* --- LANGUAGE SWITCHER STYLES --- */
+    /* --- LANGUAGE SWITCHER STYLES (UPDATED TO PILL STYLE) --- */
     .lang-switch-container {
         position: absolute;
         top: 25px;
         right: 25px;
         z-index: 1000;
         display: flex;
-        gap: 0;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        border-radius: 25px;
-        background: white;
+        gap: 4px; /* Space between buttons */
+        background: rgba(255, 255, 255, 0.9); /* Translucent white background */
+        padding: 5px;
+        border-radius: 50px; /* Fully rounded container */
+        border: 1px solid rgba(92, 122, 144, 0.2);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        backdrop-filter: blur(5px);
     }
 
     .lang-btn {
-        background: var(--white);
-        border: 1px solid var(--primary-blue);
-        color: var(--text-dark);
-        padding: 10px 18px;
+        background: transparent;
+        border: none;
+        color: var(--primary-blue);
+        padding: 8px 16px;
+        border-radius: 50px; /* Fully rounded buttons */
         font-family: 'Lato', sans-serif;
-        font-size: 1rem;
+        font-size: 1.1rem; /* Slightly larger emoji */
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all 0.3s ease;
         display: flex;
         align-items: center;
-        gap: 6px;
+        justify-content: center;
         line-height: 1;
+    }
+
+    /* Hover effect for inactive button */
+    .lang-btn:hover:not(.active) {
+        background-color: rgba(92, 122, 144, 0.1);
     }
 
     /* Active State (Selected Language) */
     .lang-btn.active {
         background: var(--primary-blue);
         color: var(--white);
+        box-shadow: 0 2px 8px rgba(92, 122, 144, 0.3);
         font-weight: 700;
-    }
-
-    .lang-btn:first-child {
-        border-radius: 25px 0 0 25px;
-        border-right: none;
-    }
-
-    .lang-btn:last-child {
-        border-radius: 0 25px 25px 0;
-    }
-    
-    .lang-btn:hover:not(.active) {
-        background-color: #f0f4f7;
     }
 
     /* Logic to hide/show languages */
@@ -317,8 +314,8 @@
         }
         
         .lang-btn {
-            padding: 12px 20px;
-            font-size: 1.1rem;
+            padding: 10px 18px;
+            font-size: 1.2rem; /* Larger emoji for touch */
         }
 
         .logo-img { width: 100px; margin-top: 20px; }
